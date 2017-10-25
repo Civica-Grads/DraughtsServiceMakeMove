@@ -12,10 +12,10 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-public class BoardMicroServiceApplication {
+public class MakeMoveMicroServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BoardMicroServiceApplication.class, args);
+        SpringApplication.run(MakeMoveMicroServiceApplication.class, args);
     }
     
     
