@@ -2,8 +2,12 @@ package com.civica.grads.boardgames.web;
 
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
+import com.civica.grads.boardgames.exceptions.GameException;
+import com.civica.grads.boardgames.model.Board;
+import com.civica.grads.boardgames.model.Counter;
 import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.Position;
+import com.civica.grads.boardgames.model.draughts.DraughtsGame;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -31,6 +35,17 @@ public class MakeMoveMicroServiceApplication {
     	
     	return new MoveRecord(new Position(0, 0), new Position(1, 1), Colour.BLACK, CounterType.NORMAL, false) ; 
     	
+    }
+    
+    @Bean
+    Board board() throws GameException {
+    	
+    	Board draughtsBoard = new Board(DraughtsGame.BoardType.BRAZILIAN.getBoardSize());
+    	
+    	draughtsBoard.placePiece(new Counter(Colour.WHITE, CounterType.NORMAL, 0), new Position(0, 1));
+    	
+    	return draughtsBoard;
+    
     }
     
 }

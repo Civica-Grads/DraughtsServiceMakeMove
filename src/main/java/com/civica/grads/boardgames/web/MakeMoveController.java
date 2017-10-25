@@ -1,7 +1,9 @@
 package com.civica.grads.boardgames.web;
 
 import com.civica.grads.boardgames.exceptions.GameException;
+import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.MoveRecord;
+import com.civica.grads.boardgames.model.Position;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
@@ -16,6 +18,9 @@ public class MakeMoveController {
     
     @Autowired
     private MoveRecord smallMove ; 
+    
+    @Autowired
+    private Board board;
     
     
     @RequestMapping("/large")
@@ -38,5 +43,14 @@ public class MakeMoveController {
         
         return pageHtml ;
     }
-
+    
+    @RequestMapping("/board")
+    @ResponseBody
+    String renderBoard() throws GameException {
+        
+        String pageHtml = String.format("<html><body><pre>%s%s</pre></body></html>", board.isOccupied(new Position(0, 0)), board.isOccupied(new Position(0, 1)));
+        
+        return pageHtml ;
+    }
+    
 }
