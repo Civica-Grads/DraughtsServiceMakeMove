@@ -1,8 +1,7 @@
 package com.civica.grads.boardgames.web;
 
-import com.civica.grads.boardgames.display.StringBufferBoardRenderer;
 import com.civica.grads.boardgames.exceptions.GameException;
-import com.civica.grads.boardgames.model.Board;
+import com.civica.grads.boardgames.model.MoveRecord;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
@@ -13,17 +12,29 @@ public class MakeMoveController {
 
     
     @Autowired
-    private Board board;
+    private MoveRecord largeMove ;
+    
+    @Autowired
+    private MoveRecord smallMove ; 
     
     
-    @RequestMapping("/")
+    @RequestMapping("/large")
     @ResponseBody
-    String renderBoard() throws GameException {
+    String renderLargeBoard() throws GameException {
         
-        StringBufferBoardRenderer boardRender = new StringBufferBoardRenderer();
-        boardRender.render(board);
+        //StringBufferBoardRenderer boardRender = new StringBufferBoardRenderer();
+        //boardRender.render(board);
         
-        String pageHtml = String.format("<html><body><pre>%s</pre></body></html>", boardRender.asString());
+        String pageHtml = String.format("<html><body><pre>%s</pre></body></html>", largeMove.toString());
+        
+        return pageHtml ;
+    }
+    
+    @RequestMapping("/small")
+    @ResponseBody
+    String renderSmallBoard() throws GameException {
+        
+        String pageHtml = String.format("<html><body><pre>%s</pre></body></html>", smallMove.toString());
         
         return pageHtml ;
     }

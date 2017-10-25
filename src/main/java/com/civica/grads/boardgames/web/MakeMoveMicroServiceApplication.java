@@ -1,9 +1,9 @@
 package com.civica.grads.boardgames.web;
 
-import com.civica.grads.boardgames.display.StringBufferBoardRenderer;
-import com.civica.grads.boardgames.exceptions.GameSetupException;
-import com.civica.grads.boardgames.interfaces.Renderer;
-import com.civica.grads.boardgames.model.Board;
+import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
+import com.civica.grads.boardgames.model.MoveRecord;
+import com.civica.grads.boardgames.model.Position;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,10 +20,17 @@ public class MakeMoveMicroServiceApplication {
     
     
     @Bean
-    Board board()
-    {
-        return new Board(10);
+    MoveRecord largeMove() {
+    	
+    	return new MoveRecord(new Position(0, 0), new Position(2, 2), Colour.WHITE, CounterType.KING, true) ; 
+    	
     }
     
+    @Bean
+    MoveRecord smallMove() {
+    	
+    	return new MoveRecord(new Position(0, 0), new Position(1, 1), Colour.BLACK, CounterType.NORMAL, false) ; 
+    	
+    }
     
 }
