@@ -2,8 +2,9 @@ package com.civica.grads.boardgames.web;
 
 import com.civica.grads.boardgames.display.StringBufferBoardRenderer;
 import com.civica.grads.boardgames.exceptions.GameSetupException;
+import com.civica.grads.boardgames.interfaces.Board;
 import com.civica.grads.boardgames.interfaces.Renderer;
-import com.civica.grads.boardgames.model.Board;
+import com.civica.grads.boardgames.model.GameBoard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -22,7 +23,7 @@ public class BoardMicroServiceApplication {
     @Bean
     Board board()
     {
-        return new Board(10);
+        return new GameBoard(10);
     }
     
     
